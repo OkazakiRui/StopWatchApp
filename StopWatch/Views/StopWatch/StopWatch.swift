@@ -10,6 +10,31 @@ import SwiftUI
 struct StopWatch: View {
     @ObservedObject var stopWatchManager = StopWatchManager()
     
+    @State var useBool = false
+    
+    func activateProximitySensor() {
+        print("activate")
+        UIDevice.current.isProximityMonitoringEnabled = true
+        
+        if UIDevice.current.isProximityMonitoringEnabled {
+            NotificationCenter.default.addObserver(stopWatchManager, selector: #selector(stopWatchManager.didChange), name: UIDevice.proximityStateDidChangeNotification, object: UIDevice.current)
+        }
+    }
+    
+    
+    func useProximity() {
+        activateProximitySensor()
+        self.useBool = true
+    }
+    
+//    func deactivateProximitySensor() {
+////        Viewが表示されていない時にする
+//        print("deactivate")
+//        UIDevice.current.isProximityMonitoringEnabled = false
+//
+//        NotificationCenter.default.removeObserver(stopWatchManager, name: UIDevice.proximityStateDidChangeNotification, object: UIDevice.current)
+//    }
+    
     var body: some View {
         VStack {
             Text(stopWatchManager.displayTime)
@@ -27,9 +52,19 @@ struct StopWatch: View {
                 })
             }
             .foregroundColor(.black)
+            .padding(.bottom)
+            
+            if useBool == false {
+                Button(action: { useProximity() }, label: {
+                    Text("接近センサーを使う")
+                })
+            }
+            
+            
         }
     }
 }
+
 
 struct StopWatch_Previews: PreviewProvider {
     static var previews: some View {

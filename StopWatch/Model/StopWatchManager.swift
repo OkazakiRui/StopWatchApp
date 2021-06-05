@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 class StopWatchManager: ObservableObject {
     
@@ -23,6 +24,8 @@ class StopWatchManager: ObservableObject {
     var minutesElapsed:Int = 0
     var hoursElapsed:Int = 0
     
+    var runBool:Bool = true
+    
     @Published var displayTime:String = "0:00:00.00"
     
 //    値が変更されたらリロードする。
@@ -30,6 +33,7 @@ class StopWatchManager: ObservableObject {
     var timer = Timer()
 
     func Start() {
+        print("実行中")
         mode = .running
         timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) {_ in
 //            0.1秒ごとに実行
@@ -50,11 +54,13 @@ class StopWatchManager: ObservableObject {
     }
 
     func Pouse() {
+        print("一時停止")
         timer.invalidate()
         mode = .poused
     }
     
     func Stop() {
+        print("実行停止")
         timer.invalidate()
         self.secondsElapsed = 0.00
         self.minutesElapsed = 0
@@ -78,4 +84,19 @@ class StopWatchManager: ObservableObject {
             return String(num)
         }
     }
+    
+    
+    @objc func didChange(notification: NSNotification) {
+        print("change")
+        if (notification.object as? UIDevice) != nil {
+            if runBool {
+                Pouse()
+                Start()
+            } else {
+                Pouse()
+            }
+            runBool = !runBool
+        }
+    }
+    
 }
