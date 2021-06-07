@@ -24,7 +24,6 @@ class StopWatchManager: ObservableObject {
     var minutesElapsed:Int = 0
     var hoursElapsed:Int = 0
     
-    var runBool:Bool = true
     
     @Published var displayTime:String = "0:00:00.00"
     
@@ -44,7 +43,7 @@ class StopWatchManager: ObservableObject {
                 self.minutesElapsed += 1
             }
             
-            if self.hoursElapsed == 60 {
+            if self.minutesElapsed == 60 {
                 self.minutesElapsed = 0
                 self.hoursElapsed += 1
             }
@@ -86,6 +85,7 @@ class StopWatchManager: ObservableObject {
     }
     
     
+    var runBool:Bool = true
     @objc func didChange(notification: NSNotification) {
         print("change")
         if (notification.object as? UIDevice) != nil {
