@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E37E807267737E50055B66E /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E37E806267737E50055B66E /* AppStorage.swift */; };
 		2E9ABB55266B43580014CCF0 /* StopWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABB54266B43580014CCF0 /* StopWatchApp.swift */; };
 		2E9ABB57266B43580014CCF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABB56266B43580014CCF0 /* ContentView.swift */; };
 		2E9ABB59266B435E0014CCF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E9ABB58266B435D0014CCF0 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E37E806267737E50055B66E /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
 		2E9ABB51266B43580014CCF0 /* StopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9ABB54266B43580014CCF0 /* StopWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchApp.swift; sourceTree = "<group>"; };
 		2E9ABB56266B43580014CCF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				2E9ABB6E266B4CA60014CCF0 /* StopWatchManager.swift */,
+				2E37E806267737E50055B66E /* AppStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E9ABB67266B448F0014CCF0 /* StopWatchLayout.swift in Sources */,
+				2E37E807267737E50055B66E /* AppStorage.swift in Sources */,
 				2E9ABB6D266B4C280014CCF0 /* StopWatchButton.swift in Sources */,
 				2E9ABB57266B43580014CCF0 /* ContentView.swift in Sources */,
 				2E9ABB6F266B4CA60014CCF0 /* StopWatchManager.swift in Sources */,

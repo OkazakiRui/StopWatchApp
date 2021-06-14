@@ -20,9 +20,9 @@ class StopWatchManager: ObservableObject {
     @Published var mode:stopWatchMode = .stopped
     
 //    監視対象にする
-    var secondsElapsed:Float = 0.00
-    var minutesElapsed:Int = 0
-    var hoursElapsed:Int = 0
+    @AppStorage("secondsElapsedKey") var secondsElapsed = 0.00
+    @AppStorage("minutesElapsedKey") var minutesElapsed = 0
+    @AppStorage("hoursElapsedKey") var hoursElapsed = 0
     
     
     @Published var displayTime:String = "0:00:00.00"
@@ -48,7 +48,7 @@ class StopWatchManager: ObservableObject {
                 self.hoursElapsed += 1
             }
             
-            self.displayTime = String(self.hoursElapsed) + ":" + self.digitMinutes(num:self.minutesElapsed) + ":" + self.digitMinutes(num:self.secondsElapsed)
+            self.displayTime = String(self.hoursElapsed) + ":" + self.digitMinutes(num:Int(self.minutesElapsed)) + ":" + self.digitSeconds(num:Float(self.secondsElapsed))
         }
     }
 
@@ -68,7 +68,7 @@ class StopWatchManager: ObservableObject {
         mode = .stopped
     }
     
-    func digitMinutes(num:Float) -> String{
+    func digitSeconds(num:Float) -> String{
         if num < 10.0 {
             return "0" + String(format:"%.2f", num)
         } else {
@@ -82,6 +82,35 @@ class StopWatchManager: ObservableObject {
         } else {
             return String(num)
         }
+    }
+    
+    func startText() -> String {
+//        if displayTime == "0:00:00.00" {
+//            var hour:String = "0"
+//            var min:String = "00"
+//            var sec:String = "00.00"
+//
+//            hour = String(hoursElapsed)
+//
+//            if minutesElapsed < 10 {
+//                min = "0" + String(minutesElapsed)
+//            } else {
+//                min = String(minutesElapsed)
+//            }
+//
+//            if secondsElapsed < 10.0 {
+//                sec = "0" + String(format:"%.2f", minutesElapsed)
+//            } else {
+//                sec = String(format:"%.2f", minutesElapsed)
+//            }
+//
+//            return hour + ":" + min + ":" + sec
+//        } else {
+//        print(displayTime)
+        Start()
+        Stop()
+            return displayTime
+//        }
     }
     
     
@@ -98,5 +127,6 @@ class StopWatchManager: ObservableObject {
             runBool = !runBool
         }
     }
+    
     
 }
